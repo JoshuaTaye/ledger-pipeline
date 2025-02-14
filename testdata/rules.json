@@ -1,0 +1,5 @@
+[
+  {"category": "Food", "contains": "COFFEE", "priority": 10},
+  {"category": "Transport", "contains": "UBER", "priority": 5},
+  {"category": "Housing", "contains": "RENT", "priority": 20}
+]
