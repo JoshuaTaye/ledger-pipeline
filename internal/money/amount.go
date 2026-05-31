@@ -16,10 +16,7 @@ func (a Amount) IsDebit() bool { return float64(a) < 0 }
 
 func (a Amount) Abs() Amount {
 	v := float64(a)
-	if v < 0 {
-		return Amount(-v)
-	}
-	return a
+	return Amount(-v)
 }
 
 func ParseAmount(s string) (Amount, error) {
