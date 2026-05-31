@@ -11,6 +11,7 @@ import (
 	"github.com/joshuataye/ledgerpipeline/internal/batchfile"
 	"github.com/joshuataye/ledgerpipeline/internal/budget"
 	"github.com/joshuataye/ledgerpipeline/internal/categorize/rules"
+	"github.com/joshuataye/ledgerpipeline/internal/cliutil"
 	"github.com/joshuataye/ledgerpipeline/internal/export"
 	"github.com/joshuataye/ledgerpipeline/internal/import/ofx"
 	"github.com/joshuataye/ledgerpipeline/internal/import/qif"
@@ -43,6 +44,36 @@ func main() {
 		os.Exit(runImportOFX(os.Args[2:]))
 	case "import-qif":
 		os.Exit(runImportQIF(os.Args[2:]))
+	case "insights":
+		os.Exit(runInsights(os.Args[2:]))
+	case "monthly":
+		os.Exit(runMonthly(os.Args[2:]))
+	case "stats":
+		os.Exit(runStats(os.Args[2:]))
+	case "match-transfers":
+		os.Exit(runMatchTransfers(os.Args[2:]))
+	case "anomalies":
+		os.Exit(runAnomalies(os.Args[2:]))
+	case "forecast":
+		os.Exit(runForecast(os.Args[2:]))
+	case "compare":
+		os.Exit(runCompare(os.Args[2:]))
+	case "tax-report":
+		os.Exit(runTaxReport(os.Args[2:]))
+	case "snapshot":
+		os.Exit(runSnapshot(os.Args[2:]))
+	case "import-any":
+		os.Exit(runImportAny(os.Args[2:]))
+	case "import-fixedwidth":
+		os.Exit(runImportFixedWidth(os.Args[2:]))
+	case "intervals":
+		os.Exit(runIntervals(os.Args[2:]))
+	case "format-export":
+		os.Exit(runFormatExport(os.Args[2:]))
+	case "budget-analysis":
+		os.Exit(runBudgetAnalysis(os.Args[2:]))
+	case "filter-preset":
+		os.Exit(runFilterPreset(os.Args[2:]))
 	case "help", "-h", "--help":
 		printUsage()
 	default:
@@ -64,6 +95,21 @@ commands:
   batch       summarize every CSV in a directory
   import-ofx  parse an OFX snippet file to CSV-style rows on stdout
   import-qif  parse a QIF file to CSV-style rows on stdout
+  insights    spending insights from a statement
+  monthly     monthly net rollups
+  stats       debit/credit statistics
+  match-transfers  pair internal transfer legs
+  anomalies   flag outlier transactions by z-score
+  forecast    project monthly net from history
+  compare     compare monthly nets between two statements
+  tax-report  summarize deductible category spend
+  snapshot    save or load a JSON transaction snapshot
+  import-any  auto-detect format and import a statement
+  import-fixedwidth  parse fixed-width bank export lines
+  intervals   estimate recurring charge cadence
+  format-export  write summaries as CSV, TSV, or Markdown
+  budget-analysis  budget utilization percentages
+  filter-preset    apply JSON or last-N-days filter presets
 
 `)
 }
@@ -93,6 +139,7 @@ func runSummarize(args []string) int {
 	rulesPath := fs.String("rules", "", "JSON file of categorization rules")
 	accountID := fs.String("account", "default", "account id for orchestrated run")
 	opening := fs.Float64("opening", 0, "account opening balance")
+	filterFlags := cliutil.ParseFilterFlags(fs)
 	if err := fs.Parse(args); err != nil {
 		return 1
 	}
@@ -127,6 +174,7 @@ func runSummarize(args []string) int {
 			Dedupe:          *dedupe,
 			Normalize:       *normalize,
 			CategorizeRules: catRules,
+			Filter:          filterFlags.Options(),
 			Validate:        validate.Validator{},
 		},
 	})

@@ -1,0 +1,5 @@
+{
+  "min_date": "2026-01-01",
+  "max_date": "2026-01-31",
+  "categories": ["Food", "Transport", "Utilities"]
+}

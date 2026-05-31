@@ -1,0 +1,5 @@
+[
+  {"id": "checking", "name": "Primary Checking", "type": "checking", "opening": 2500.00},
+  {"id": "savings", "name": "Emergency Savings", "type": "savings", "opening": 10000.00},
+  {"id": "credit", "name": "Rewards Card", "type": "credit", "opening": 0}
+]

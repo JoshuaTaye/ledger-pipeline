@@ -1,0 +1,4 @@
+2026-01-02Grocery Mart          -86.42    
+2026-01-03Metro Transit          -12.00    
+2026-01-05Direct Deposit        2450.00    
+2026-01-07Electric Co            -94.18    
