@@ -65,7 +65,7 @@ func ParseReader(r io.Reader) ([]Transaction, error) {
 			Date:        date,
 			Description: strings.TrimSpace(row[1]),
 			Category:    strings.TrimSpace(row[2]),
-			Amount:      amount,
+			Amount:      -amount,
 		})
 	}
 
