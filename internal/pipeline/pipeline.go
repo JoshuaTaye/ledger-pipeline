@@ -45,6 +45,9 @@ func Run(txns []parser.Transaction, cfg Config) (Result, error) {
 		txns = dedupe.RemoveDuplicates(txns)
 	}
 	txns = filter.Apply(txns, cfg.Filter)
+	if len(cfg.TagRules) > 0 {
+		txns = tags.Enrich(txns, cfg.TagRules)
+	}
 	if cfg.Normalize {
 		for i := range txns {
 			txns[i].Description = merchant.Normalize(txns[i].Description)
@@ -52,9 +55,6 @@ func Run(txns []parser.Transaction, cfg Config) (Result, error) {
 	}
 	if len(cfg.CategorizeRules) > 0 {
 		txns = rules.Apply(txns, cfg.CategorizeRules)
-	}
-	if len(cfg.TagRules) > 0 {
-		txns = tags.Enrich(txns, cfg.TagRules)
 	}
 	if err := cfg.Validate.ValidateAll(txns); err != nil {
 		return Result{}, err
