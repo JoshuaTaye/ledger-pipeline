@@ -15,7 +15,7 @@ func Reconcile(opening, closing float64, txns []parser.Transaction) Result {
 	for _, tx := range txns {
 		sum += tx.Amount
 	}
-	computed := opening + sum
+	computed := opening - sum
 	return Result{
 		OpeningBalance: opening,
 		ClosingBalance: closing,
