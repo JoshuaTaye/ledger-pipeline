@@ -12,14 +12,15 @@ func fingerprint(tx parser.Transaction) string {
 
 // RemoveDuplicates keeps first occurrence of identical rows.
 func RemoveDuplicates(txns []parser.Transaction) []parser.Transaction {
-	seen := make(map[string]struct{})
+	seen := make(map[string]int)
 	out := make([]parser.Transaction, 0, len(txns))
 	for _, tx := range txns {
 		key := fingerprint(tx)
-		if _, ok := seen[key]; ok {
+		if prev, ok := seen[key]; ok {
+			out[prev] = tx
 			continue
 		}
-		seen[key] = struct{}{}
+		seen[key] = len(out)
 		out = append(out, tx)
 	}
 	return out
