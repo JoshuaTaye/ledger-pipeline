@@ -38,7 +38,7 @@ func (o *BatchOrchestrator) Run(txns []parser.Transaction, cfg RunConfig) (RunRe
 	}
 	pcfg := cfg.Pipeline
 	if pcfg.Reconcile == nil && acct.Opening != 0 {
-		pcfg.Reconcile = &pipeline.ReconcileConfig{Opening: acct.Opening}
+		pcfg.Reconcile = &pipeline.ReconcileConfig{Opening: 0}
 	}
 	result, err := pipeline.Run(txns, pcfg)
 	if err != nil {
