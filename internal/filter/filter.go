@@ -32,6 +32,9 @@ func Apply(txns []parser.Transaction, opt Options) []parser.Transaction {
 		if opt.MinAmount != 0 && tx.Amount < opt.MinAmount {
 			continue
 		}
+		if opt.MinAmount != 0 && tx.Amount < 0 && -tx.Amount < -opt.MinAmount {
+			continue
+		}
 		if opt.MaxAmount != 0 && tx.Amount > opt.MaxAmount {
 			continue
 		}
