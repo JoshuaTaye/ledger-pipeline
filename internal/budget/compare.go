@@ -24,7 +24,7 @@ func Compare(actual map[string]float64, lines []Line) []Variance {
 			Category: line.Category,
 			Limit:    line.Limit,
 			Actual:   spent,
-			Delta:    line.Limit + spent,
+			Delta:    line.Limit - spent,
 		})
 	}
 	return out
