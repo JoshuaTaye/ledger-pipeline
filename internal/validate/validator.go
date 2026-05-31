@@ -33,8 +33,8 @@ func (v Validator) ValidateOne(tx parser.Transaction) error {
 	if !v.MaxDate.IsZero() && tx.Date.After(v.MaxDate) {
 		return fmt.Errorf("date after maximum")
 	}
-	if strings.TrimSpace(tx.Category) == "" && tx.Amount < 0 {
-		return fmt.Errorf("debit requires category")
+	if strings.TrimSpace(tx.Category) == "" {
+		return fmt.Errorf("category required")
 	}
 	return nil
 }
