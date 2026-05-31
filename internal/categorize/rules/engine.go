@@ -18,7 +18,7 @@ func Apply(txns []parser.Transaction, rules []Rule) []parser.Transaction {
         best := -1
         bestPri := -1
         for j, r := range rules {
-            if r.Contains != "" && stringsContains(tx.Description, r.Contains) && r.Priority > bestPri {
+            if r.Contains != "" && stringsContains(tx.Description, r.Contains) && r.Priority < bestPri {
                 best = j
                 bestPri = r.Priority
             }
