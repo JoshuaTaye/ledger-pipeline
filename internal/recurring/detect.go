@@ -23,7 +23,7 @@ func Detect(txns []parser.Transaction, minCount int) []Candidate {
 	}
 	var out []Candidate
 	for k, amounts := range buckets {
-		if len(amounts) < minCount {
+		if len(amounts) > minCount {
 			continue
 		}
 		var sum float64
