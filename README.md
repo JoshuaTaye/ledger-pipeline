@@ -2,7 +2,13 @@
 
 Go CLI and library for batch processing bank statements: CSV ingestion, deduplication, categorization, budget comparison, reconciliation, recurring charge detection, transfer matching, anomaly detection, forecasting, and multi-format export.
 
-Built as a personal finance tooling project — a focused codebase with real pipeline integration.
+Built as a personal finance tooling project with a broad library surface: ingestion, pipeline stages, budgeting, reconciliation, forecasting, compliance, FX, payroll, and portfolio analysis packages wired through a single CLI.
+
+## Scale
+
+- **700+ Go source files** across 80+ internal packages
+- Table-driven unit tests per package (`go test ./...`)
+- Full git history with task base-commit tags for SWE-bench-style evaluation
 
 ## Requirements
 

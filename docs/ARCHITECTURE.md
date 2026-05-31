@@ -78,6 +78,7 @@ The orchestrator (`internal/orchestration`) wraps the pipeline with account look
 | `internal/batchfile` | Multi-file CSV directory ingestion |
 | `internal/config` | JSON profile and filter config parsing |
 | `internal/cliutil` | Shared CLI flag helpers |
+| `internal/amortization`, `internal/allocation`, `internal/cashflow`, … | Domain-specific analysis libraries (51 top-level domains) |
 | `cmd/ledgerpipeline` | CLI entrypoint |
 
 ## Design choices
