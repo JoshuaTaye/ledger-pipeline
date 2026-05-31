@@ -21,7 +21,7 @@ func Apply(txns []parser.Transaction, opt Options) []parser.Transaction {
 		if !opt.From.IsZero() && tx.Date.Before(opt.From) {
 			continue
 		}
-		if !opt.To.IsZero() && tx.Date.After(opt.To) {
+		if !opt.To.IsZero() && !tx.Date.Before(opt.To) {
 			continue
 		}
 		if len(opt.Categories) > 0 {
