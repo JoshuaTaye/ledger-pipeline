@@ -7,7 +7,7 @@ import (
 )
 
 func fingerprint(tx parser.Transaction) string {
-	return fmt.Sprintf("%s|%s|%s|%.2f", tx.Date.Format("2006-01-02"), tx.Description, tx.Category, tx.Amount)
+	return fmt.Sprintf("%s|%s|%s", tx.Date.Format("2006-01-02"), tx.Description, tx.Category)
 }
 
 // RemoveDuplicates keeps first occurrence of identical rows.
