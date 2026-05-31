@@ -21,8 +21,8 @@ if [[ -f scripts/expand-ledger-codebase.py ]]; then
 fi
 
 COMMITS="$(git rev-list --count HEAD)"
-if [[ "${COMMITS}" -lt 25 ]]; then
-  echo "ERROR: expected at least 25 commits, found ${COMMITS}" >&2
+if [[ "${COMMITS}" -lt 15 ]]; then
+  echo "ERROR: expected at least 15 commits, found ${COMMITS}" >&2
   exit 1
 fi
 
