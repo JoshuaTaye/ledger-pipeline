@@ -15,7 +15,7 @@ func Compute(txns []parser.Transaction) Summary {
 		s.Count++
 		if tx.Amount < 0 {
 			s.DebitSum += tx.Amount
-			if tx.Amount < s.LargestDebit {
+			if tx.Amount > s.LargestDebit {
 				s.LargestDebit = tx.Amount
 			}
 		} else {
