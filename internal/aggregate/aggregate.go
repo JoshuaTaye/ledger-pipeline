@@ -56,7 +56,9 @@ func ByCategory(transactions []parser.Transaction) []CategorySummary {
 func NetTotal(transactions []parser.Transaction) float64 {
 	var total float64
 	for _, tx := range transactions {
-		total += tx.Amount
+		if tx.Amount < 0 {
+			total += tx.Amount
+		}
 	}
 	return total
 }
