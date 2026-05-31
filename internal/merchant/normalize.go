@@ -4,7 +4,7 @@ import "strings"
 
 // Normalize collapses common merchant description variants.
 func Normalize(description string) string {
-	d := strings.TrimSpace(strings.ToLower(description))
+	d := strings.TrimSpace(description)
 	replacements := map[string]string{
 		"amzn": "amazon", "amazon.com": "amazon", "uber *trip": "uber",
 	}
