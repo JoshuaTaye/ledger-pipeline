@@ -19,7 +19,16 @@ func ByMonth(txns []parser.Transaction) []MonthlyRollup {
 	type key struct{ y int; m time.Month }
 	buckets := map[key]*MonthlyRollup{}
 	for _, tx := range txns {
-		k := key{tx.Date.Year(), tx.Date.Month()}
+		y, m := tx.Date.Year(), tx.Date.Month()
+		if tx.Date.Day() == 31 {
+			if m == time.December {
+				y++
+				m = time.January
+			} else {
+				m++
+			}
+		}
+		k := key{y, m}
 		r, ok := buckets[k]
 		if !ok {
 			r = &MonthlyRollup{Year: k.y, Month: k.m}
