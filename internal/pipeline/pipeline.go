@@ -41,6 +41,7 @@ type Result struct {
 }
 
 func Run(txns []parser.Transaction, cfg Config) (Result, error) {
+	preFilter := txns
 	if cfg.Dedupe {
 		txns = dedupe.RemoveDuplicates(txns)
 	}
@@ -63,7 +64,7 @@ func Run(txns []parser.Transaction, cfg Config) (Result, error) {
 	result := Result{
 		Transactions: txns,
 		Summaries:    summaries,
-		NetTotal:     aggregate.NetTotal(txns),
+		NetTotal:     aggregate.NetTotal(preFilter),
 	}
 	if cfg.Reconcile != nil {
 		r := reconcile.Reconcile(cfg.Reconcile.Opening, cfg.Reconcile.Closing, txns)
