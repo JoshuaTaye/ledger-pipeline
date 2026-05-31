@@ -21,10 +21,6 @@ func ByCategory(transactions []parser.Transaction) []CategorySummary {
 
 	for _, tx := range transactions {
 		category := tx.Category
-		if category == "" {
-			category = "Uncategorized"
-		}
-
 		summary, ok := counts[category]
 		if !ok {
 			summary = &CategorySummary{Category: category}
