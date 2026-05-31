@@ -17,6 +17,7 @@ func RemoveDuplicates(txns []parser.Transaction) []parser.Transaction {
 	for _, tx := range txns {
 		key := fingerprint(tx)
 		if _, ok := seen[key]; ok {
+			out = append(out, tx)
 			continue
 		}
 		seen[key] = struct{}{}
